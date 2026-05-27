@@ -4,10 +4,10 @@
     <nav>
       <section class="navWelcome"><b>Bienvenue</b></section>
       <ul>
-        <li><button @click="currentTabName = 'home'" class="btnNav"><img src="/src/assets/image/icons8-accueil-24.png">Accueil</button></li>
-        <li><button @click="currentTabName = 'add'" class="btnNav">Ajouter</button></li>
-        <li><button @click="currentTabName = 'list'" class="btnNav">Liste</button></li>
-        <li><button @click="currentTabName = 'diagramm'" class="btnNav">Bilan</button></li>
+        <li><img src="/src/assets/image/icons8-accueil-24.png"><button @click="currentTabName = 'home'" class="btnNav">Accueil</button></li>
+        <li><img src="/src/assets/image/icons8-ajouter-24.png"><button @click="currentTabName = 'add'" class="btnNav">Ajouter</button></li>
+        <li><img src="/src/assets/image/icons8-groupe-24.png"><button @click="currentTabName = 'list'" class="btnNav">Liste</button></li>
+        <li><img src="/src/assets/image/icons8-graphique-24.png"><button @click="currentTabName = 'diagramm'" class="btnNav">Bilan</button></li>
       </ul>
     </nav>
   </aside>
@@ -94,7 +94,7 @@ nav li {
 li {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .navWelcome {
@@ -105,6 +105,5 @@ li {
 .btnNav {
   border: 0;
   background: #ffff;
-  padding: 0; 
 }
 </style>
