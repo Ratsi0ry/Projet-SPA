@@ -4,10 +4,10 @@
     <nav>
       <section class="navWelcome"><b>Bienvenue</b></section>
       <ul>
-        <li><button @click="value =! value">Accueil</button></li>
-        <li><button @click="nvalue =! nvalue">Ajouter</button></li>
-        <li><button @click="nvalue =! nvalue">Liste</button></li>
-        <li><button @click="nvalue =! nvalue">Bilan</button></li>
+        <li><button @click="currentTabName = 'home'" class="btnNav"><img src="/src/assets/image/icons8-accueil-24.png">Accueil</button></li>
+        <li><button @click="currentTabName = 'add'" class="btnNav">Ajouter</button></li>
+        <li><button @click="currentTabName = 'list'" class="btnNav">Liste</button></li>
+        <li><button @click="currentTabName = 'diagramm'" class="btnNav">Bilan</button></li>
       </ul>
     </nav>
   </aside>
@@ -15,7 +15,7 @@
   <main class="content">
     <header><h1 style="font-size: 22px;">Dashboard</h1></header>
     <section class="dashboard-grid">
-      <component :is="active"></component>
+      <component :is="currentTab"></component>
       </section>
   </main>
     </div>
@@ -23,16 +23,20 @@
 
 <script>
   export default {
-    data(){
-      return {
-        value:false
-      }
-    },
+    data() {
+    return {
+      currentTabName: 'home' //currentTab est le nom des pages
+    }
+  },
     computed: {
-      active() {
-        if(this.value){
-          return 'comp-one'
+      currentTab(){
+        const contents = {
+          home:'homeView',
+          add:'addView',
+          list:'listView',
+          diagramm:'diagrammView'
         }
+        return contents[this.currentTabName] // affichage du contenu selectionner
       }
     }
   }
@@ -98,4 +102,9 @@ li {
     font-size: 20px;
 }
 
+.btnNav {
+  border: 0;
+  background: #ffff;
+  padding: 0; 
+}
 </style>

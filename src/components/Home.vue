@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h2>One!</h2>
-        <p>This is component one.</p>
+        <p>Hello world!</p>
     </div>
 </template>
 
