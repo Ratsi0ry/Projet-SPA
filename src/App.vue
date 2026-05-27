@@ -13,7 +13,9 @@
   </aside>
   
   <main class="content">
-    <header><h1 style="font-size: 22px;">Dashboard</h1></header>
+    <header><h1><img src="/src/assets/image/icons8-menu-24.png" style="background-color: #dbdbdb;">Admin</h1>
+      <p><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></p>
+    </header>
     <section class="dashboard-grid">
       <component :is="currentTab"></component>
       </section>
@@ -44,6 +46,9 @@
 </script>
 
 <style scoped>
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   padding: 0;
@@ -52,8 +57,9 @@ header {
   display: flex; 
   height: 60px;
   position: sticky  ;
-  border-radius: 15px;
   background-color: #dbdbdb;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.432);
 }
 
 main.content{
@@ -67,7 +73,7 @@ main.content{
 }
 
 .sidebar {
-  width: 150px;
+  width: 160px;
   color: black; 
   padding: 1rem;
   position: sticky;
@@ -75,7 +81,6 @@ main.content{
 
 .content {
   flex: 1;
-  padding: 1rem;
 }
 
 .dashboard-grid {
@@ -94,7 +99,13 @@ nav li {
 li {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    border-radius: 7px;
+}
+
+li:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.637);
+  border-radius: 7px;
+  transform: scale(1.1);
 }
 
 .navWelcome {
@@ -102,8 +113,27 @@ li {
     font-size: 20px;
 }
 
-.btnNav {
+.btnNav ,img{
   border: 0;
   background: #ffff;
+  padding: 0.5rem;
+}
+
+h1 {
+  font-size: 22px;
+  padding: 1rem;
+  align-items: center;
+  display: flex;
+}
+
+.logOut_btn {
+  background-color: #dbdbdb; 
+  align-items: center; 
+  display: flex;
+  padding: 0.5rem;
+}
+
+.dashboard-grid {
+  padding: 1rem;
 }
 </style>
