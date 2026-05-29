@@ -16,7 +16,4 @@
         display: flex;
         align-items: center;
     }
-    .submitStyle{
-    
-    }
 </style> 

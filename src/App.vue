@@ -4,10 +4,10 @@
     <nav>
       <section class="navWelcome"><b>Bienvenue</b></section>
       <ul>
-        <li><img src="/src/assets/image/icons8-accueil-24.png"><button @click="currentTabName = 'home'" class="btnNav">Accueil</button></li>
-        <li><img src="/src/assets/image/icons8-ajouter-24.png"><button @click="currentTabName = 'add'" class="btnNav">Ajouter</button></li>
-        <li><img src="/src/assets/image/icons8-groupe-24.png"><button @click="currentTabName = 'list'" class="btnNav">Liste</button></li>
-        <li><img src="/src/assets/image/icons8-graphique-24.png"><button @click="currentTabName = 'diagramm'" class="btnNav">Bilan</button></li>
+        <li><img src="/src/assets/image/icons8-accueil-24.png"><router-link to="/home">Accueil</router-link></li>
+        <li><img src="/src/assets/image/icons8-ajouter-24.png"><router-link to="/add">Ajouter</router-link>></li>
+        <li><img src="/src/assets/image/icons8-groupe-24.png"><router-link to="/list">Liste</router-link></li>
+        <li><img src="/src/assets/image/icons8-graphique-24.png"><router-link to="/diagramm">Bilan</router-link></li>
       </ul>
     </nav>
   </aside>
@@ -17,8 +17,8 @@
       <p><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></p>
     </header>
     <section class="dashboard-grid">
-      <component :is="currentTab"></component>
-      </section>
+      <router-view/>
+    </section>
   </main>
     </div>
 </template>
