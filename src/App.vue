@@ -5,9 +5,9 @@
       <section class="navWelcome"><b>Bienvenue</b></section>
       <ul>
         <li><img src="/src/assets/image/icons8-accueil-24.png"><router-link to="/home">Accueil</router-link></li>
-        <li><img src="/src/assets/image/icons8-ajouter-24.png"><router-link to="/add">Ajouter</router-link>></li>
+        <li><img src="/src/assets/image/icons8-ajouter-24.png"><router-link to="/add">Ajouter</router-link></li>
         <li><img src="/src/assets/image/icons8-groupe-24.png"><router-link to="/list">Liste</router-link></li>
-        <li><img src="/src/assets/image/icons8-graphique-24.png"><router-link to="/diagramm">Bilan</router-link></li>
+        <li><img src="/src/assets/image/icons8-graphique-24.png"><router-link to="/diagramm">Bilan</router-link><</li>
       </ul>
     </nav>
   </aside>
@@ -17,47 +17,30 @@
       <p><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></p>
     </header>
     <section class="dashboard-grid">
-      <router-view/>
-    </section>
+      <router-view></router-view>
+      </section>
   </main>
     </div>
 </template>
 
 <script>
-  /*export default {
-    data() {
-    return {
-      currentTabName: 'home' //currentTab est le nom des pages
-    }
-  },
-    computed: {
-      currentTab(){
-        const contents = {
-          home:'homeView',
-          add:'addView',
-          list:'listView',
-          diagramm:'diagrammView'
-        }
-        return contents[this.currentTabName] // affichage du contenu selectionner
-      }
-    }
-  }*/
-
 </script>
 
 <style scoped>
 html {
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
   padding: 0;
 }
+
 header {
   display: flex; 
   height: 60px;
   position: sticky  ;
-  background-color: #dbdbdb6b;
+  background-color: #dbdbdb3a;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.432);
 }
@@ -102,10 +85,6 @@ li {
     border-radius: 7px;
 }
 
-/*li:has(button) {
-  background-color: aqua;
-}*/
-
 li:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.637);
   border-radius: 7px;
@@ -117,22 +96,21 @@ li:hover {
     font-size: 20px;
 }
 
-/*.btnNav {
+.btnNav {
   border: 0;
   background: #ffff;
   padding: 0.5rem;
-}*/
+}
 
 h1 {
   font-size: 22px;
   padding: 1rem;
   align-items: center;
   display: flex;
-  background-color: #dbdbdb6b;
+  gap: 0.2rem;
 }
 
 .logOut_btn {
-  background-color: #dbdbdb6b; 
   align-items: center; 
   display: flex;
   padding: 0.5rem;
