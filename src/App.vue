@@ -49,22 +49,24 @@
 html {
   scroll-behavior: smooth;
 }
+
 body {
   margin: 0;
   padding: 0;
 }
+
 header {
   display: flex; 
   height: 60px;
   position: sticky  ;
-  background-color: #dbdbdb;
+  background-color: #dbdbdb3a;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.432);
 }
 
 main.content{
     padding-top: 0;
-    background-color: #dbdbdb;
+    background-color: beige;
 }
 
 .app-container {
@@ -102,10 +104,6 @@ li {
     border-radius: 7px;
 }
 
-/*li:has(button) {
-  background-color: aqua;
-}*/
-
 li:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.637);
   border-radius: 7px;
@@ -128,11 +126,10 @@ h1 {
   padding: 1rem;
   align-items: center;
   display: flex;
-  background-color: #dbdbdb;
+  gap: 0.2rem;
 }
 
 .logOut_btn {
-  background-color: #dbdbdb; 
   align-items: center; 
   display: flex;
   padding: 0.5rem;

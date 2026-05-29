@@ -1,10 +1,5 @@
 <template>
-    <h2>Login</h2>
-    <form action="login">
-        <input type="text" v-model="name" required>
-        <input type="password" v-model="psswd" required>
-        <button @click="connect">se connecter</button>
-    </form>
+    <p>add vue page</p>
 </template>
 <script></script>
 <style scoped>
