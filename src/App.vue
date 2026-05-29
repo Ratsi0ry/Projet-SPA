@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  export default {
+  /*export default {
     data() {
     return {
       currentTabName: 'home' //currentTab est le nom des pages
@@ -41,7 +41,7 @@
         return contents[this.currentTabName] // affichage du contenu selectionner
       }
     }
-  }
+  }*/
 
 </script>
 
@@ -57,14 +57,14 @@ header {
   display: flex; 
   height: 60px;
   position: sticky  ;
-  background-color: #dbdbdb;
+  background-color: #dbdbdb6b;
   justify-content: space-between;
   border-bottom: 1px solid rgba(0, 0, 0, 0.432);
 }
 
 main.content{
     padding-top: 0;
-    background-color: #dbdbdb;
+    background-color: beige;
 }
 
 .app-container {
@@ -117,22 +117,22 @@ li:hover {
     font-size: 20px;
 }
 
-.btnNav {
+/*.btnNav {
   border: 0;
   background: #ffff;
   padding: 0.5rem;
-}
+}*/
 
 h1 {
   font-size: 22px;
   padding: 1rem;
   align-items: center;
   display: flex;
-  background-color: #dbdbdb;
+  background-color: #dbdbdb6b;
 }
 
 .logOut_btn {
-  background-color: #dbdbdb; 
+  background-color: #dbdbdb6b; 
   align-items: center; 
   display: flex;
   padding: 0.5rem;
