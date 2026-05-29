@@ -13,7 +13,7 @@
   </aside>
   
   <main class="content">
-    <header><h1><img src="/src/assets/image/icons8-menu-24.png" style="background-color: #dbdbdb;">Admin</h1>
+    <header><h1><img src="/src/assets/image/icons8-menu-24.png">Admin</h1>
       <p><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></p>
     </header>
     <section class="dashboard-grid">
@@ -102,6 +102,10 @@ li {
     border-radius: 7px;
 }
 
+/*li:has(button) {
+  background-color: aqua;
+}*/
+
 li:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.637);
   border-radius: 7px;
@@ -113,7 +117,7 @@ li:hover {
     font-size: 20px;
 }
 
-.btnNav ,img{
+.btnNav {
   border: 0;
   background: #ffff;
   padding: 0.5rem;
@@ -124,6 +128,7 @@ h1 {
   padding: 1rem;
   align-items: center;
   display: flex;
+  background-color: #dbdbdb;
 }
 
 .logOut_btn {
