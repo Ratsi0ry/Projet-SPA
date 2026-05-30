@@ -11,7 +11,7 @@ import Diagramm from './components/Diagramm.vue'
 import List from './components/List.vue'
 
 const routes = [
-    {path: '/home', component: Home},
+    {path: '/', component: Home},
     {path: '/home',component: Home/*, meta: {requiresAuth: true}*/},
     {path: '/add',component: Add/*, meta: {requiresAuth: true}*/},
     {path: '/list', component: List/*, meta: {requiresAuth: true}*/},
@@ -23,7 +23,7 @@ const router  = createRouter({
     routes
 })
 
-/*router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
     const isConnected = !!localStorage.getItem('token')
 
     if(to.meta.requiresAuth && !isConnected) {
@@ -31,7 +31,7 @@ const router  = createRouter({
     }else {
         next()
     }
-})*/
+})
 
 
 app.use(router)

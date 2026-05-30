@@ -2,18 +2,18 @@
   <div class="app-container">
   <aside class="sidebar">
     <nav>
-      <section class="navWelcome"><b>Bienvenue</b></section>
+      <section class="navWelcome"><b>Dashboard</b></section>
       <ul>
         <li><img src="/src/assets/image/icons8-accueil-24.png"><router-link to="/home">Accueil</router-link></li>
         <li><img src="/src/assets/image/icons8-ajouter-24.png"><router-link to="/add">Ajouter</router-link></li>
         <li><img src="/src/assets/image/icons8-groupe-24.png"><router-link to="/list">Liste</router-link></li>
-        <li><img src="/src/assets/image/icons8-graphique-24.png"><router-link to="/diagramm">Bilan</router-link><</li>
+        <li><img src="/src/assets/image/icons8-graphique-24.png"><router-link to="/diagramm">Bilan</router-link></li>
       </ul>
     </nav>
   </aside>
   
   <main class="content">
-    <header><h1><img src="/src/assets/image/icons8-menu-24.png">Admin</h1>
+    <header><h1><img src="/src/assets/image/icons8-menu-24.png"><router-view>{{ title }}</router-view></h1>
       <p><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></p>
     </header>
     <section class="dashboard-grid">
@@ -23,7 +23,24 @@
     </div>
 </template>
 
-<script>
+<script setup>
+  import {ref, watch} from 'vue'
+  import { useRoute } from 'vue-router'
+
+  const route = useRoute()
+  console.log(route)
+  const title = ref('')
+
+  watch(
+    ()=> route.path,
+    (newPath)=> {
+      if(newPath == '/home') title.value = 'Accueil'
+      if(newPath == '/add') title.value = 'Ajouter'
+      if(newPath == '/list') title.value = 'Liste'
+      if(newPath == '/diagramm') title.value = 'Bilan'
+    },
+    {immediate:true}
+    )
 </script>
 
 <style scoped>
@@ -47,7 +64,7 @@ header {
 
 main.content{
     padding-top: 0;
-    background-color: beige;
+    background-color: #dbdbdb3a;
 }
 
 .app-container {
@@ -82,18 +99,25 @@ nav li {
 li {
     display: flex;
     align-items: center;
-    border-radius: 7px;
+    gap: 0.7rem;
+    padding: 0.3rem;
 }
 
 li:hover {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.637);
-  border-radius: 7px;
+  border-radius: 12px;
   transform: scale(1.1);
 }
 
-.navWelcome {
+a {
+  text-decoration: none;
+  color: black;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navWelcome, h1  {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .btnNav {
