@@ -52,7 +52,7 @@
         border-bottom: 1px solid black;
         padding: 10px;
         font-size: 14px;
-        background-color: #dbdbdb3a;
+        background-color: #f7f7f700;
         width: 50vh;
         margin-bottom: 2rem;
     }
