@@ -27,7 +27,7 @@ router.beforeEach((to, from, next) => {
     const isConnected = !!localStorage.getItem('token')
 
     if(to.meta.requiresAuth && !isConnected) {
-        next('home')
+        next('/add')
     }else {
         next()
     }

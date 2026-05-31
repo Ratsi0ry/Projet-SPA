@@ -4,9 +4,9 @@
             <th>Nom</th>
             <th>Prenom</th>
             <th>Numero</th>
-            <th>Voiture</th>
-            <th>Nb Jrs</th>
-            <th>Taux Jrs</th>
+            <th>Voiture loyée</th>
+            <th>Nombre de jours</th>
+            <th>Taux journalier</th>
             <th>Loyer</th>
         </tr>    
 
@@ -51,7 +51,7 @@
   import { ref } from 'vue';
 
   const clients = ref([
-    {id:1, nom:'koto', prenom:'alexis', numero:'034 74 891 14', voiture:'toyota', nbJrs:7, taux:50000}
+    { nom:'koto', prenom:'alexis', numero:'034 74 891 14', voiture:'toyota', nbJrs:7, taux:50000}
   ])
 
     const modifier = (client) => {
@@ -67,6 +67,9 @@
 <style scoped>
     table{
         border-collapse: collapse;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 14px;
+        margin-left: 3rem;
     }
      table td.actions{
         border: 0;
@@ -96,5 +99,5 @@
     input:hover{
         background-color: rgb(188, 200, 253);
         transition: 0.3s ease-out;
-    }
+    } 
 </style>

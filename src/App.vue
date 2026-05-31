@@ -14,7 +14,7 @@
   
   <main class="content">
     <header><h1><img src="/src/assets/image/icons8-menu-24.png"><router-view>{{ title }}</router-view></h1>
-      <p><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></p>
+      <router-link to="/"><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></router-link>
     </header>
     <section class="dashboard-grid">
       <router-view></router-view>
@@ -102,6 +102,7 @@ li {
     align-items: center;
     gap: 0.7rem;
     padding: 0.3rem;
+    transition: 0.1s ease-in;
 }
 
 li:hover {

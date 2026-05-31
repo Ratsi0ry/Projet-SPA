@@ -3,7 +3,7 @@
         <form>
             <h1>Login</h1>
             <br><br>
-            <input type="text" id="nom" placeholder="nom" required><br>
+            <input type="text" id="nom" placeholder="nom admin" required><br>
             <input type="password" id="pswd" placeholder="mot de passe" required>
             <!---<p v-if="error" style="color: red;">Mot de passe incorrect !</p>-->
             <div id="submit"><button @click="connect" class="submitStyle"><b>se connecter</b></button></div>

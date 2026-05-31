@@ -5,14 +5,11 @@
         <p><b>Information du client:</b></p   >
 
         <!--nom & prenom-->
-        <!--<label for="name" >Nom:</label><br>-->
-        <input type="text" id="name"  placeholder="nom"><br><br>
-        <!--<label for="fstName">Prenom:</label><br>-->
+        <input type="text" id="name" name="name" placeholder="nom"><br><br>
         <input type="text" id="fstName" placeholder="prenom"><br><br>
 
         <!--numero-->
-        <!--<label for="num_loc">Numero tel:</label><br>-->
-        <input type="tel" id="num_loc" v-model="phoneNumber"placeholder="numero teléphone" required><br><br>
+        <input type="tel" id="num_loc" name="num_loc" v-model="phoneNumber"placeholder="numero teléphone" required><br><br>
 
         <!--voiture-->
         <label for="design_voiture">Voitures disponibles:</label>s
@@ -53,6 +50,7 @@
         border-bottom: 1px solid black ;
         background-color: #f7f7f700;
     }
+
     .icon{
         width: 300px;
         height: 300px;
@@ -60,18 +58,14 @@
     }
 
     .infoCli{
-        /*background-color: #181717ee;*/
-        /*display: flex;
-        justify-content: center;*/
         height: 370px;
         padding: 2rem;
-        /*width: 400px;*/
         border-radius: 10px;
-        /*color: white;*/
     }
     
     input#name, input#fstName, input#num_loc {
         width: 270px;
+        padding: 10px;
     }
 
     #design_voiture{
@@ -94,11 +88,9 @@
     }
 
     input, select{
-        /*border-radius: 5px;*/
         font-size: medium;
         margin-bottom :1rem;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        /*border: 0;*/
     }
 
     .btnPlace {
