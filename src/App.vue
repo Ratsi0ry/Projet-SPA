@@ -6,7 +6,7 @@
       <ul>
         <li><img src="/src/assets/image/icons8-accueil-24.png"><router-link to="/home">Accueil</router-link></li>
         <li><img src="/src/assets/image/icons8-ajouter-24.png"><router-link to="/add">Ajouter</router-link></li>
-        <li><img src="/src/assets/image/icons8-groupe-24.png"><router-link to="/list">Liste</router-link></li>
+        <li><img src="/src/assets/image/icons8-liste-24.png"><router-link to="/list">Liste</router-link></li>
         <li><img src="/src/assets/image/icons8-graphique-24.png"><router-link to="/diagramm">Bilan</router-link></li>
       </ul>
     </nav>
@@ -51,6 +51,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  width: 100vh;
 }
 
 header {
