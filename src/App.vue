@@ -4,7 +4,6 @@
     <nav>
       <section class="navWelcome"><b>Dashboard</b></section>
       <ul>
-        <li><img src="/src/assets/image/icons8-accueil-24.png"><router-link to="/home">Accueil</router-link></li>
         <li><img src="/src/assets/image/icons8-ajouter-24.png"><router-link to="/add">Ajouter</router-link></li>
         <li><img src="/src/assets/image/icons8-liste-24.png"><router-link to="/list">Liste</router-link></li>
         <li><img src="/src/assets/image/icons8-graphique-24.png"><router-link to="/diagramm">Bilan</router-link></li>
@@ -14,7 +13,10 @@
   
   <main class="content">
     <header><h1><img src="/src/assets/image/icons8-menu-24.png"><router-view>{{ title }}</router-view></h1>
-      <router-link to="/"><img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" ></router-link>
+      <router-link to="/" @mouseenter="hover=true" @mouseleave="hover=false" class="logOut">
+        <img src="/src/assets/image/icons8-sortie-24.png" class="logOut_btn" >
+        <span v-show="hover"> se déconnecter</span>
+      </router-link>
     </header>
     <section class="dashboard-grid">
       <router-view></router-view>
@@ -27,6 +29,7 @@
   import {ref, watch} from 'vue'
   import { useRoute } from 'vue-router'
 
+  //path vers la destination
   const route = useRoute()
   console.log(route)
   const title = ref('')
@@ -34,13 +37,15 @@
   watch(
     ()=> route.path,
     (newPath)=> {
-      if(newPath == '/home') title.value = 'Accueil'
       if(newPath == '/add') title.value = 'Ajouter'
       if(newPath == '/list') title.value = 'Liste'
       if(newPath == '/diagramm') title.value = 'Bilan'
     },
     {immediate:true}
     )
+
+    //affichage au survol du router-ling logOut
+    const hover = ref(false)
 </script>
 
 <style scoped>
@@ -93,7 +98,7 @@ main.content{
 
 nav li {
     margin-bottom: 1rem;
-    margin-top: 6rem;
+    margin-top: 8rem;
     list-style: none;
 }
 
@@ -144,5 +149,12 @@ h1 {
 
 .dashboard-grid {
   padding: 1rem;
+}
+
+.logOut {
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+    transition: 2s ease-in-out;
 }
 </style>

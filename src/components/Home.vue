@@ -1,31 +1,15 @@
 <template>
     <div class="init">
         <form>
-            <h1>Login</h1>
+            <h1>Connexion</h1>
             <br><br>
-            <input type="text" id="nom" placeholder="nom admin" required><br>
+            <input type="text" id="name" placeholder="nom admin" required><br>
             <input type="password" id="pswd" placeholder="mot de passe" required>
-            <!---<p v-if="error" style="color: red;">Mot de passe incorrect !</p>-->
             <div id="submit"><button @click="connect" class="submitStyle"><b>se connecter</b></button></div>
         </form>
     </div>
 </template>
-<script>
-    /*import {ref} from 'vue'
-    import {useRouter} from 'vue-router'
-
-    const pswd = ref('')
-    const error = ref(false)
-    const router = useRouter()
-
-    const vericatioPswd = () => {
-        if(pswd.value == '1234') {
-            localStorage.setItem('token', 'token-valide')
-            router.push('/home')
-        } else {
-            error.value = true
-        }
-    }*/
+<script setup>
 </script>
 
 <style scoped>
@@ -42,10 +26,10 @@
         margin-top: 5rem;
     }
 
-    #submit{
+    /*#submit{
         display: flex;
         justify-content: flex-end;
-    }
+    }*/
 
     input{
         border: 0;
@@ -59,10 +43,17 @@
 
     .submitStyle{
         border: 0;
-        background-color: green;
+        background-color: rgb(65, 65, 65);
         color: white;
         padding: 10px;
         border-radius: 10px;
+        width: 50vh;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-left: 1rem;
+    }
+
+    .submitStyle:hover {
+        background-color: green;
+        transform: scale(1.1);
     }
 </style> 

@@ -6,13 +6,13 @@
 
         <!--nom & prenom-->
         <input type="text" id="name" name="name" placeholder="nom"><br><br>
-        <input type="text" id="fstName" placeholder="prenom"><br><br>
+        <input type="text" id="fstName" name="fstName" placeholder="prenom"><br><br>
 
         <!--numero-->
         <input type="tel" id="num_loc" name="num_loc" v-model="phoneNumber"placeholder="numero teléphone" required><br><br>
 
         <!--voiture-->
-        <label for="design_voiture">Voitures disponibles:</label>s
+        <label for="design_voiture">Voitures disponibles:</label>
         <select id="design_voiture">
             <option value="toyota">Toyota</option>
             <option value="cytroen">Cytroen</option>
