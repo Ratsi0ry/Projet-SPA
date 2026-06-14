@@ -1,4 +1,5 @@
 <template>
+
   <div class="app-container">
   <aside class="sidebar">
     <nav>
@@ -23,6 +24,7 @@
       </section>
   </main>
     </div>
+
 </template>
 
 <script setup>
