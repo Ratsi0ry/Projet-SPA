@@ -4,12 +4,14 @@
             <h1>Connexion</h1>
             <br><br>
             <input type="text" id="name" placeholder="nom admin" required><br>
-            <input type="password" id="pswd" placeholder="mot de passe" required>
+            <input type="password" id="pswd" v-model="input_pswd" placeholder="mot de passe" required>
+            <p v-show="incorrect">mdp incorrect</p>
             <div id="submit"><button @click="connect" class="submitStyle"><b>se connecter</b></button></div>
         </form>
     </div>
 </template>
 <script setup>
+    
 </script>
 
 <style scoped>
