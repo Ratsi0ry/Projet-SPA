@@ -1,19 +1,19 @@
 <template>
     <div class="init">
-        <form @prevent.submit="tryLogin">
+        <form>
             <h1>Connexion</h1>
             <br><br>
             <input type="text" id="name" placeholder="nom admin" required><br>
-            <input type="password" id="pswd" v-model="input_pswd" placeholder="mot de passe" required>
-            <p v-show="incorrect">mdp incorrect</p>
+            <input type="password" id="pswd" placeholder="mot de passe" required>
+            <!--<p v-show="incorrect">mdp incorrect</p>-->
             <div id="submit"><button @click="connect" class="submitStyle"><b>se connecter</b></button></div>
         </form>
 
-        <p v-if="msg">{{ msg }}</p>
+        <!--<p v-if="msg">{{ msg }}</p>--->
     </div>
 </template>
 <script setup>
-import { ref } from 'vue';
+/*import { ref } from 'vue';
 
 const name = ref('')
 const pswd = ref('')
@@ -42,7 +42,7 @@ const tryLogin = async() => {
     }catch(error){
         msg.value = 'Impossible de joindre le serveur API'
     }
-}
+}*/
     
 </script>
 
@@ -59,11 +59,6 @@ const tryLogin = async() => {
         height: 300px;
         margin-top: 5rem;
     }
-
-    /*#submit{
-        display: flex;
-        justify-content: flex-end;
-    }*/
 
     input{
         border: 0;
