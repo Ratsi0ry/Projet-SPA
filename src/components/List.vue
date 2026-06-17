@@ -5,63 +5,132 @@
             <th>Prenom</th>
             <th>Numero</th>
             <th>Voiture loyée</th>
+            <th>Date début</th>
+            <th>Date fin</th>
             <th>Nombre de jours</th>
             <th>Taux journalier</th>
-            <th>Loyer</th>
+            <th>Loyer total</th>
         </tr>    
 
-        <tr v-for="(clientInfo, index) in clients" :key="clientInfo.id">
-
+        <tr v-for="client in clients" :key="client.id">
             <td>
-                <span v-if="!clientInfo.modif">{{ clientInfo.nom }}</span>
-                <input v-else v-model="clientInfo.nom" type="text"/>
+                <span v-if="!editingStates[client.id]">{{ client.name }}</span>
+                <input v-else v-model="client.name" type="text"/>
             </td>
             <td>
-                <span v-if="!clientInfo.modif">{{ clientInfo.prenom }}</span>
-                <input v-else v-model="clientInfo.prenom" type="text"/>
+                <span v-if="!editingStates[client.id]">{{ client.fstName }}</span>
+                <input v-else v-model="client.fstName" type="text"/>
             </td>
             <td>
-                <span v-if="!clientInfo.modif">{{ clientInfo.numero }}</span>
-                <input v-else v-model="clientInfo.numero" type="text"/>
+                <span v-if="!editingStates[client.id]">{{ client.tel }}</span>
+                <input v-else v-model="client.tel" type="text"/>
             </td>
             <td>
-                <span v-if="!clientInfo.modif">{{ clientInfo.voiture }}</span>
-                <input v-else v-model="clientInfo.voiture" type="text"/>
+                <span v-if="!editingStates[client.id]">{{ client.car }}</span>
+                <input v-else v-model="client.car" type="text"/>
             </td>
-            <td>
-                <span v-if="!clientInfo.modif">{{ clientInfo.nbJrs }}</span>
-                <input v-else v-model="clientInfo.nbJrs" type="text"/>
-            </td>
-            <td>
-                <span v-if="!clientInfo.modif">{{ clientInfo.taux }}</span>
-                <input v-else v-model="clientInfo.taux" type="text"/>
-            </td>
-            <td>{{ clientInfo.nbJrs * clientInfo.taux }} Ar</td>
+            <td>{{ client.dayBegin }}</td>
+            <td>{{ client.dayEnd }}</td>
+            <td>{{ client.nbJours }}</td>
+            <td>{{ client.tauxJournalier }} Ar</td>
+            <td>{{ client.nbJours * client.tauxJournalier }} Ar</td>
 
             <td class="actions">
-                <button @click="modifier(clientInfo)" class="btnModifier"><img src="/src/assets/image/icons8-modifier-20.png">
-                    {{ clientInfo.modif ?'sauvegarder' : '' }}
+                <button @click="modifier(client)" class="btnModifier"><img src="@/assets/image/icons8-modifier-20.png">
+                    {{ editingStates[client.id] ? 'sauvegarder' : '' }}
                 </button>
-                <button @click="supprimer(index)" class="btnDelete"><img src="/src/assets/image/icons8-supprimer-pour-toujours-20.png" alt=""></button>
+                <button @click="supprimer(client.id)" class="btnDelete"><img src="@/assets/image/icons8-supprimer-pour-toujours-20.png" alt=""></button>
             </td>
         </tr>
     </table>
     
 </template>
 <script setup>
-  import { ref } from 'vue';
+  import { ref, onMounted } from 'vue';
 
-  const clients = ref([
-    { nom:'koto', prenom:'alexis', numero:'034 74 891 14', voiture:'toyota', nbJrs:7, taux:50000}
-  ])
+  const clients = ref([])
+  const editingStates = ref({})
 
-    const modifier = (client) => {
-    client.modif = !client.modif;
+  // Récupérer les données de la base de données
+  const fetchClients = async() => {
+    try {
+      const response = await fetch('http://localhost:8000/list.php')
+      const result = await response.json()
+      
+      if(result.status === 'success') {
+        clients.value = result.data
+      } else {
+        console.error('Erreur:', result.message)
+      }
+    } catch(error) {
+      console.error('Impossible de récupérer les données:', error)
+    }
+  }
+
+  // Au chargement du composant
+  onMounted(() => {
+    fetchClients()
+  })
+
+  const modifier = async(client) => {
+    if(!editingStates.value[client.id]) {
+      editingStates.value[client.id] = true
+    } else {
+      // Sauvegarder les modifications en base de données
+      try {
+        const response = await fetch('http://localhost:8000/list.php?action=update', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: client.id,
+            name: client.name,
+            fstName: client.fstName,
+            tel: client.tel,
+            car: client.car
+          })
+        })
+
+        const result = await response.json()
+        if(result.status === 'success') {
+          editingStates.value[client.id] = false
+          alert('Client modifié!')
+        } else {
+          alert('Erreur: ' + result.message)
+        }
+      } catch(error) {
+        console.error('Erreur:', error)
+        alert('Impossible de modifier le client')
+      }
+    }
   };
 
-  const supprimer = (index) => {
+  const supprimer = async(id) => {
     if (confirm("Voulez-vous vraiment supprimer cette ligne ?")) {
-        clients.value.splice(index, 1);
+      try {
+        const response = await fetch('http://localhost:8000/list.php?action=delete', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: id })
+        })
+
+        const result = await response.json()
+        if(result.status === 'success') {
+          const index = clients.value.findIndex(c => c.id === id)
+          if(index > -1) {
+            clients.value.splice(index, 1)
+          }
+          alert('Client supprimé!')
+        } else {
+          alert('Erreur: ' + result.message)
+        }
+      } catch(error) {
+        console.error('Erreur:', error)
+        alert('Impossible de supprimer le client')
+      }
     }
   };
 </script>

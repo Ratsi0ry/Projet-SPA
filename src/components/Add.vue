@@ -1,6 +1,6 @@
 <template>
 
-    <img src="/src/assets/image/location-de-voitures.png" class="icon">
+    <img src="@/assets/image/location-de-voitures.png" class="icon">
 
     <div class="infoCli">
         <form @submit.prevent="submitInfo">
@@ -24,15 +24,18 @@
         </select><br><br>
 
         <!--nb jours-->
-        <label for="nb_jrs">Nombre de jours:</label>
-        <input type="number" id="nb_jrs" v-model.number="days" name="jours"  min="1" max="31" value="1"><br><br>
+        <label for="dateDebut">Date de debut:</label>
+        <input type="date" id="dateDebut" v-model="dayBegin"><br><br>
 
-        <!--taux journalier-->
-        <label for="taux_journalier">Taux journalier:</label>
-        <input type="number" id="taux_journalier" v-model.number="rate" name="taux" value="1"><br><br><br>
+        <label for="dateFin">Date de fin:</label>
+        <input type="date" id="dateFin" v-model="dayEnd"><br>
+
+        <!--nombre de jours et taux journalier-->
+        <p class="active">Nombre de jours:<span id="nb_jrs">{{ nbJours }}</span></p>
+        <p class="active">Taux journalier:<span id="taux_journalier">{{ tauxJournalier }} Ar</span></p><br><br>
         
         <div class="btnPlace">
-            <button type="reset" id="reset"><img src="/src/assets/image/icons8-rendez-vous-périodique-20.png"></button>
+            <button type="reset" id="reset"><img src="@/assets/image/icons8-rendez-vous-périodique-20.png"></button>
             <button type="submit" id="submit">envoyer</button>
         </div>
         </form>
@@ -40,15 +43,42 @@
     </div>
 </template>
 <script setup>
-    import { ref } from 'vue';
+    import { ref, computed } from 'vue';
 
     const name = ref('')
     const fstName = ref('')
     const tel = ref('')
     const car = ref('peugot')
-    const days = ref(1)
-    const rate = ref(1)
+    const dayBegin = ref('')
+    const dayEnd = ref('') 
     const msg = ref('')
+
+    // Prix des voitures
+    const carPrices = {
+        'peugot': 80000,
+        'dacia duster': 95000,
+        'suzuki': 120000,
+        'toyota': 140000,
+        'starex': 150000
+    }
+
+    // Calcul du nombre de jours
+    const nbJours = computed(() => {
+        if (dayBegin.value && dayEnd.value && (dayEnd.value > dayBegin.value)) {
+            const start = new Date(dayBegin.value)
+            const end = new Date(dayEnd.value)
+            const diffTime = Math.abs(end - start)
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+            return diffDays || 1
+        }
+        return 0
+    })
+
+    // Calcul du taux journalier (prix voiture * nombre de jours)
+    const tauxJournalier = computed(() => {
+        const price = carPrices[car.value] || 0
+        return price * nbJours.value
+    })
 
     const submitInfo = async() => {
     try {
@@ -62,8 +92,9 @@
                 fstName : fstName.value,
                 tel: tel.value,
                 car: car.value,
-                days: days.value,
-                rate: rate.value
+                dayBegin: dayBegin.value,
+                dayEnd: dayEnd.value,
+                tauxJournalier: tauxJournalier.value
             })
         })
 
@@ -78,8 +109,8 @@
             name.value = ''
             fstName.value = ''
             tel.value = ''
-            days.value = ''
-            rate.value = ''
+            dayBegin.value = ''
+            dayEnd.value = ''
         } 
     }catch(error){
         msg.value = 'Impossible de joindre le serveur API'
@@ -95,6 +126,7 @@
         border: 0;
         border-bottom: 1px solid black ;
         background-color: #f7f7f700;
+        font-size: 18px;
     }
 
     .icon{
@@ -136,7 +168,7 @@
 
     input, select{
         font-size: medium;
-        margin-bottom :1rem;
+        margin-bottom :0.5rem;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
@@ -185,10 +217,25 @@
 
     .msgStyle {
         color: green;
+        background-color: aliceblue;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         font-size: medium;
         align-items: flex-end;
         transition: 0.3s ease-in-out;
+    }
+    
+    #dateDebut{
+        margin-left: 2rem;
+    }
+
+    #dateFin{
+        margin-left: 3rem;
+    }
+
+    .active {
+        margin-bottom: 1.2rem;
+        font-size:15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
 </style>
