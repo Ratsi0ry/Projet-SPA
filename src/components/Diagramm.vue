@@ -1,5 +1,5 @@
 <template>
-    <Bar :data="data" :options="options" />
+    <Bar :data="data" :options="options" /><br>
 </template>
 <script>
 import {
@@ -11,6 +11,7 @@ import {
     CategoryScale,
     LinearScale
 } from 'chart.js'
+
 
 import { Bar } from 'vue-chartjs';
 
@@ -24,23 +25,24 @@ ChartJs.register(
 )
 
 export default {
-    /*name: 'App',*/
+    name: 'App',
     components: {Bar},
 
     data(){
         return {
             data: {
                 labels: ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendreidi', 'Samedi', 'Dimanche'],
+                
                 datasets:[
                     {data:[25, 18, 20, 10, 14, 38, 40]}
                 ] 
             },
             options: {
                 responsive:true
-            }
+            },
+            max: ''
         }
     }
-    
 }
 </script>
 <style></style>

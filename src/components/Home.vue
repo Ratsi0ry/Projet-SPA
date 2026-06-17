@@ -1,6 +1,6 @@
 <template>
     <div class="init">
-        <form>
+        <form @prevent.submit="tryLogin">
             <h1>Connexion</h1>
             <br><br>
             <input type="text" id="name" placeholder="nom admin" required><br>
@@ -8,9 +8,41 @@
             <p v-show="incorrect">mdp incorrect</p>
             <div id="submit"><button @click="connect" class="submitStyle"><b>se connecter</b></button></div>
         </form>
+
+        <p v-if="msg">{{ msg }}</p>
     </div>
 </template>
 <script setup>
+import { ref } from 'vue';
+
+const name = ref('')
+const pswd = ref('')
+const msg = ref('')
+
+const tryLogin = async() => {
+    try {
+        const response = await fetch ('http://localhost/media/ratsiory/linux/vue/Back-end&API/home.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type' : 'application/json' // format variable a mettre en JSON
+            },
+            body: JSON.stringify({
+                name : name.value, // appliavtion du forman JSON
+                pswd : pswd.value
+            })
+        })
+
+        const result = await response.json()
+        msg.value = result.message
+
+        if(result.status == 'success') {
+            name.value = ''
+            pswd.value = ''
+        } 
+    }catch(error){
+        msg.value = 'Impossible de joindre le serveur API'
+    }
+}
     
 </script>
 

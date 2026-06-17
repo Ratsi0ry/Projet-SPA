@@ -45,7 +45,8 @@
                 <button @click="supprimer(index)" class="btnDelete"><img src="/src/assets/image/icons8-supprimer-pour-toujours-20.png" alt=""></button>
             </td>
         </tr>
-    </table>    
+    </table>
+    
 </template>
 <script setup>
   import { ref } from 'vue';
