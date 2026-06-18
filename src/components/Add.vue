@@ -33,13 +33,15 @@
         <!--nombre de jours et taux journalier-->
         <p class="active">Nombre de jours:<span id="nb_jrs">{{ nbJours }}</span></p>
         <p class="active">Taux journalier:<span id="taux_journalier">{{ tauxJournalier }} Ar</span></p><br><br>
+
+        <p v-if="msg" class="msgStyle">{{ msg }}</p>
         
         <div class="btnPlace">
             <button type="reset" id="reset"><img src="@/assets/image/icons8-rendez-vous-périodique-20.png"></button>
             <button type="submit" id="submit">envoyer</button>
         </div>
         </form>
-        <p v-if="msg" class="msgStyle">{{ msg }}</p>
+        
     </div>
 </template>
 <script setup>
@@ -64,17 +66,17 @@
 
     // Calcul du nombre de jours
     const nbJours = computed(() => {
-        if (dayBegin.value && dayEnd.value && (dayEnd.value > dayBegin.value)) {
+        if (dayBegin.value && dayEnd.value && (dayEnd.value >= dayBegin.value)) {
             const start = new Date(dayBegin.value)
             const end = new Date(dayEnd.value)
-            const diffTime = Math.abs(end - start)
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+            const diffTime = Math.abs(end - start)// resultat en milliseconde
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))// conversion milliseconde en jours
             return diffDays || 1
         }
         return 0
     })
 
-    // Calcul du taux journalier (prix voiture * nombre de jours)
+    // Calcul du taux journalier :prix voiture * nombre de jours
     const tauxJournalier = computed(() => {
         const price = carPrices[car.value] || 0
         return price * nbJours.value
@@ -85,7 +87,7 @@
         const response = await fetch ('http://localhost:8000/add.php', {
             method: 'POST',
             headers: {
-                'Content-Type' : 'application/json' // format variable a mettre en JSON
+                'Content-Type' : 'application/json' 
             },
             body: JSON.stringify({
                 name : name.value,
@@ -216,11 +218,15 @@
     }
 
     .msgStyle {
-        color: green;
-        background-color: aliceblue;
+        color: white;
+        background-color: rgba(2, 82, 2, 0.904);
+        border-radius: 5px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: medium;
-        align-items: flex-end;
         transition: 0.3s ease-in-out;
     }
     

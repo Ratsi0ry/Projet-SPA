@@ -42,6 +42,7 @@
                 <button @click="supprimer(client.id)" class="btnDelete"><img src="@/assets/image/icons8-supprimer-pour-toujours-20.png" alt=""></button>
             </td>
         </tr>
+        <p v-if="msg" class="msgStyle"><b>{{ msg }}</b></p>
     </table>
     
 </template>
@@ -50,8 +51,9 @@
 
   const clients = ref([])
   const editingStates = ref({})
+  const msg = ref('')
 
-  // Récupérer les données de la base de données
+  // Recuperation des clients dans la bd
   const fetchClients = async() => {
     try {
       const response = await fetch('http://localhost:8000/list.php')
@@ -93,15 +95,27 @@
         })
 
         const result = await response.json()
+        msg.value = result.message
+
+        setTimeout(() => {
+            msg.value = ''
+        }, 1500)
+
         if(result.status === 'success') {
           editingStates.value[client.id] = false
-          alert('Client modifié!')
+          //alert('Client modifié!')
         } else {
           alert('Erreur: ' + result.message)
         }
       } catch(error) {
         console.error('Erreur:', error)
-        alert('Impossible de modifier le client')
+        //alert('Impossible de modifier le client')
+
+        msg.value= 'eroor lty eroor'
+
+        setTimeout(() => {
+            msg.value = ''
+        }, 1500)
       }
     }
   };
@@ -118,18 +132,28 @@
         })
 
         const result = await response.json()
+        msg.value = result.message
+
+        setTimeout(() => {
+            msg.value = ''
+        }, 1500)
+
         if(result.status === 'success') {
           const index = clients.value.findIndex(c => c.id === id)
           if(index > -1) {
             clients.value.splice(index, 1)
           }
-          alert('Client supprimé!')
+          msg.value = "Client supprimé avec success" 
         } else {
           alert('Erreur: ' + result.message)
         }
       } catch(error) {
         console.error('Erreur:', error)
-        alert('Impossible de supprimer le client')
+        msg.value="Impossible de supprimer la ligne"
+
+        setTimeout(() => {
+            msg.value = ''
+        }, 1500)
       }
     }
   };
@@ -170,4 +194,18 @@
         background-color: rgb(188, 200, 253);
         transition: 0.3s ease-out;
     } 
+
+    .msgStyle {
+        color: white;
+        background-color: rgba(2, 82, 2, 0.904);
+        border-radius: 5px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: 0.3s ease-in-out;
+    }
+
 </style>
