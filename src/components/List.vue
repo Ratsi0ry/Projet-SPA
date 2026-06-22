@@ -192,7 +192,7 @@
     }
     input:hover{
         background-color: rgb(188, 200, 253);
-        transition: 0.3s ease-out;
+        transition: 0.3s ease-out;  
     } 
 
     .msgStyle {
