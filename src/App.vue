@@ -2,7 +2,7 @@
 
   <div class="app-container">
   <aside class="sidebar">
-    <nav>
+    <nav :class="{'blockAccess' : route.name === 'Home'}">
       <section class="navWelcome"><b>Dashboard</b></section>
       <ul>
         <li><img src="/src/assets/image/icons8-ajouter-24.png"><router-link to="/add">Ajouter</router-link></li>
@@ -158,5 +158,10 @@ h1 {
     align-items: center;
     padding: 0.3rem;
     transition: 2s ease-in-out;
+}
+
+.blockAccess {
+  pointer-events: none;
+  opacity: 0.5;
 }
 </style>

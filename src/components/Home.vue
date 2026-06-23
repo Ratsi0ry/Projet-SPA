@@ -5,12 +5,11 @@
             <br><br>
             <input type="text" id="name" v-model="name" placeholder="nom admin" required><br>
             <input type="password" id="pswd" v-model="pswd" placeholder="mot de passe" required>
+            <p v-if="msg" class="msgStyle">{{ msg }}</p>
             <!--<p v-show="incorrect">mdp incorrect</p>-->
             <div id="submit">
                 <button @click="connect" class="submitStyle">se connecter</button>
             </div>
-
-            <p v-if="msg" class="messageStyle">{{ msg }}</p>
         </form>
     </div>
 </template>
@@ -28,7 +27,7 @@ const accessControl = async()=>{
         const response = await fetch('http://localhost:8000/home.php', {
             method: 'POST',
             headers: {
-                'Content-Type' : 'application/json' 
+                'Content-Type' : 'application/json'
             },
             body: JSON.stringify({
                 username : name.value,
@@ -42,7 +41,7 @@ const accessControl = async()=>{
             msg.value = ''
         }, 1500)
 
-        if(result.success) {
+        if(result.success === "true") {
             router.push('/add')
         }else{
             msg.value = result.message
@@ -106,15 +105,7 @@ const accessControl = async()=>{
     }
 
     .msgStyle {
-        color: white;
-        background-color: rgba(2, 82, 2, 0.904);
-        border-radius: 5px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        padding: 0.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: red;
         transition: 0.3s ease-in-out;
     }
 </style> 
