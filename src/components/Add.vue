@@ -16,11 +16,11 @@
         <!--voiture-->
         <label for="design_voiture">Voitures disponibles:</label>
         <select id="design_voiture" v-model="car">
-            <option value="peugot">Peugot 206 - 80 000 Ar</option>
+            <option value="peugot 206">Peugot 206 - 80 000 Ar</option>
             <option value="dacia duster">Dacia Duster - 95 000 Ar</option>
-            <option value="suzuki">Suzuki Grand Vitara - 120 000 Ar</option>
-            <option value="toyota">Toyota Prado - 140 000 Ar</option>
-            <option value="starex">Hyundai starex - 150 000 ar</option>
+            <option value="suzuki grand vitara">Suzuki Grand Vitara - 120 000 Ar</option>
+            <option value="toyota prado">Toyota Prado - 140 000 Ar</option>
+            <option value="hyundai starex">Hyundai starex - 150 000 ar</option>
         </select><br><br>
 
         <!--nb jours-->
@@ -50,18 +50,18 @@
     const name = ref('')
     const fstName = ref('')
     const tel = ref('')
-    const car = ref('peugot')
+    const car = ref('peugot 206')
     const dayBegin = ref('')
     const dayEnd = ref('') 
     const msg = ref('')
 
     // Prix des voitures
     const carPrices = {
-        'peugot': 80000,
+        'peugot 206': 80000,
         'dacia duster': 95000,
-        'suzuki': 120000,
-        'toyota': 140000,
-        'starex': 150000
+        'suzuki grand vitara': 120000,
+        'toyota prado': 140000,
+        'hyundai starex': 150000
     }
 
     // Calcul du nombre de jours
