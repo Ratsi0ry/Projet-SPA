@@ -1,4 +1,13 @@
-# learning-vue
+# Front-end projet SPA
+
+Ceci est la partie front ne notre projet academique Vue.js SPA qui consiste a la géstion de location de voiture.
+
+##Fonctionnalite:
+- Dashboard
+- gestion des clients
+- listage des clients
+- Histogramme de location
+
 
 This template should help get you started developing with Vue 3 in Vite.
 
